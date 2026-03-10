@@ -1,21 +1,34 @@
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        String input = "A man a plan a canal Panama";
+        String input = "racecar";
 
-        // Normalization: Remove non-alphanumeric characters and convert to lowercase
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        // Create an instance of the service
+        PalindromeService service = new PalindromeService();
 
-        boolean isPalindrome = true;
-
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
-        }
+        // Use the service to check the palindrome
+        boolean isPalindrome = service.checkPalindrome(input);
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
+    }
+}
+
+class PalindromeService {
+    /**
+     * Checks whether the input string is a palindrome.
+     */
+    public boolean checkPalindrome(String input) {
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
     }
 }
