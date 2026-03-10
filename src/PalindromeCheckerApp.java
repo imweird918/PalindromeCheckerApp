@@ -1,5 +1,8 @@
-
 import java.util.Stack;
+
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
 class StackStrategy implements PalindromeStrategy {
     @Override
@@ -16,19 +19,21 @@ class StackStrategy implements PalindromeStrategy {
         return true;
     }
 }
-interface PalindromeStrategy {
-    boolean check(String input);
-}
+
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
         String input = "level";
 
-        // We can choose any strategy that implements PalindromeStrategy
         PalindromeStrategy strategy = new StackStrategy();
 
+        long startTime = System.nanoTime();
         boolean isPalindrome = strategy.check(input);
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Execution Time : " + duration + " ns");
     }
 }
