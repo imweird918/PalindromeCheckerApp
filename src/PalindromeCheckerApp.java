@@ -1,19 +1,22 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 public class PalindromeCheckerApp {
     public static void main(String[] args) {
-        String input = "noon";
+        String input = "civic";
+
+        Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
-        // Push each character of the string into the stack
         for (char c : input.toCharArray()) {
+            queue.add(c);
             stack.push(c);
         }
 
         boolean isPalindrome = true;
 
-        // Iterate again through original string and compare with popped characters
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
+        while (!queue.isEmpty()) {
+            if (!queue.remove().equals(stack.pop())) {
                 isPalindrome = false;
                 break;
             }
